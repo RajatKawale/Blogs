@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Profile</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+        table {
+        border-collapse: separate;
+        border-spacing: 0 15px;
+        }
+        td {
+        width: 150px;
+        text-align: center;
+        padding: 5px;
+        }   
+        .topright {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        }
+        .topleft {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        }
+        .righty {
+        position: absolute;
+        right: 330px;
+        }
+        .lefty {
+        position: absolute;
+        left: 330px;
+        }
+        .mid{
+        position: absolute;
+        top: 30px;
+        left: 600px;
+        }
+        .midleft {
+        position: absolute;
+        top: 30px;
+        left: 300px;
+        }
+        .midright {
+        position: absolute;
+        top: 30px;
+        right: 300px;
+        }
+        </style>
+    </head>
+    <body class="theme">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+        <div class="topleft"><%= link_to "Add blog", "/blogs/new", class: "btn btn-outline-info" %></div>
+        <div class="midleft"><%= link_to "My blogs", "/blogs/myBlogs", class: "btn btn-outline-info" %></div>
+        <div class="mid"><%= link_to "Home", "/home", class: "btn btn-outline-info" %></div>
+        <div class="midright"><%= link_to "My Profile", "/users/profile", class: "btn btn-outline-info" %></div>
+        <div class="topright"><%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete}, class: "btn btn-outline-info" %></div>
+        <hr/>
+        <center> <h1>My Profile</h1> </center>
+    <center>    
+        <div class="container">   
+            <table class="table table-dark table-striped" style="width:50%">
+                <tr>
+                    <td>Name</td>
+                    <td><%=current_user.name%></td>
+                </tr>
+
+                <tr>
+                    <td>Email</td>
+                    <td><%=current_user.email%></td>
+                </tr>
+ 
+                <tr>
+                    <td>Mobile no.</td>
+                    <td><%=current_user.number%></td>
+                </tr>
+ 
+                <tr>
+                    <td>Address</td>
+                    <td><%=current_user.address%></td>
+                </tr>
+
+            </table>
+        </div>
+        <%= link_to "Update Profile", edit_user_registration_path, class: "btn btn-warning"%>
+    </center>     
+    </body>
+</html>

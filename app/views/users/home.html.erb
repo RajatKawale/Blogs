@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Blogs</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@1,400;1,700">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+    .topright {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        }
+    .topleft {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        }
+    .righty {
+        position: absolute;
+        right: 330px;
+        }
+    .lefty {
+        position: absolute;
+        left: 330px;
+        }
+    .mid{
+        position: absolute;
+        top: 30px;
+        left: 600px;
+    }
+    .midleft {
+        position: absolute;
+        top: 30px;
+        left: 300px;
+        }
+    .midright {
+        position: absolute;
+        top: 30px;
+        right: 300px;
+    }
+    </style>
+    </head>
+    <body class="theme">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <script src="" async defer></script>
+        <div class="topleft"><%= link_to "Add blog", "/blogs/new", class: "btn btn-outline-info" %></div>
+        <div class="midleft"><%= link_to "My blogs", "/blogs/myBlogs", class: "btn btn-outline-info" %></div>
+        <div class="mid"><%= link_to "Home", "/home", class: "btn btn-outline-info" %></div>
+        <div class="midright"><%= link_to "My Profile", "/users/profile", class: "btn btn-outline-info" %></div>
+        <div class="topright"><%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete}, class: "btn btn-outline-info" %></div>
+        <hr/>
+        <center><h1><b>Blogs</b></h1></center>
+        <!--<center>
+        
+        <h1><b>Blogs</b></h1>
+        <% Blog.all.reverse_each do |blog| %>
+        <div class="bg-success p-2 text-dark bg-opacity-25">
+            <%if current_user.id==blog.user_id%><h5 class="righty"><%= link_to "delete", "/blogs/#{blog.id}/delete", class: "btn btn-danger"%></h5><%end%>
+            <h3><i><%= blog.title %></i></h3>
+            <h4><%= blog.body %></h4>
+            <pre><h4>~ <%= User.find(blog.user_id).name %></h4></pre>
+            <h5 class="lefty"><%= blog.created_at %></h5><h5 class="righty"><%= link_to "#{Comment.where(blog_id: blog.id).count} comments", "/comments/#{blog.id}", class: "btn btn-secondary"%></h5>
+            <br/>
+            <br/>
+        </div>
+        <br/>
+        <%end%>
+        </center>-->
+        <div class="main">
+            <% Blog.all.reverse_each do |blog| %>
+                <div class="blog">
+                    <i><div class="date"><%=blog.created_at%></div></i>
+                    <%if current_user.id==blog.user_id%><i><h5 class="righty"><%= link_to "delete", "/blogs/#{blog.id}/delete", class: "btn btn-danger"%></h5></i><%end%>
+                    <br/>
+                    <i><h2 class="header"><%=blog.title%></h2></i>
+                    <br/>
+                    <p class="paragraph"><%=blog.body%>
+                    <br/>
+                    <i><h5 class="lefty"><%= link_to "#{Like.where(blog_id: blog.id).count} Likes", "/likes/#{blog.id}", class: "btn btn-primary"%></h5><h5 class="righty"><%= link_to "#{Comment.where(blog_id: blog.id).count} comments", "/comments/#{blog.id}", class: "btn btn-secondary"%></h5></i>
+                    <i><b><h4><center><%= User.find(blog.user_id).name %></center></h4></b></i>
+                    </p>
+                    
+                    <hr/>
+                    <br/>
+                </div>
+            <%end%> 
+        </div>      
+    </body>
+</html>

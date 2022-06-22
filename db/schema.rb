@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 20_220_615_104_207) do
     t.datetime 'updated_at', null: false
     t.string 'name'
     t.string 'email'
-    t.integer 'number', limit: 8
+    t.integer 'number'
     t.string 'password'
     t.string 'address'
     t.string 'encrypted_password', default: '', null: false
